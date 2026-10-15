@@ -22,7 +22,14 @@ class ExpenseItem extends StatelessWidget{
               children: [
                 Text('\$${expense.amount.toStringAsFixed(2)}'),
                 const Spacer(), //takes all the remaining space
-                Row(),
+                Row(
+                  children: [
+                   Icon(categoryIcons[expense.category]) ,
+                    SizedBox(width: 8,),
+                    Text(expense.formattedDate,
+                    ),
+                  ],
+                ),
               ],
             )
           ],
