@@ -22,6 +22,7 @@ class _NewExpenseState extends State<NewExpense>{
   @override
   void dispose() {
     _titleController.dispose();
+    _amountController.dispose();
     super.dispose();
   }
 
@@ -41,18 +42,24 @@ class _NewExpenseState extends State<NewExpense>{
           ),
            TextField(
             controller: _amountController,
-            maxLength: 10,
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(
+              prefixText: '\$',
               label: Text('Amount'),
             ),
           ),
           Row(
             children: [
+              TextButton(onPressed: (){
+                Navigator.pop(context);
+
+              }, 
+              child: Text('cancel')),
               ElevatedButton(onPressed: (){
                 print(_titleController.text);
                 print(_amountController.text);
               }, child: Text('Save Expense'),),
-              IconButton(onPressed: (){}, icon: Icon(Icons.cancel))
+             
             ],
           ),
         ],
