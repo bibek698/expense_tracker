@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class NewExpense extends StatefulWidget {
-
   const NewExpense({super.key});
 
   @override
@@ -10,7 +9,7 @@ class NewExpense extends StatefulWidget {
   }
 }
 
-class _NewExpenseState extends State<NewExpense>{
+class _NewExpenseState extends State<NewExpense> {
   // var _enteredTitle = '';
   // void _saveTitleInput(String inputValue){
   //   _enteredTitle = inputValue;
@@ -26,7 +25,6 @@ class _NewExpenseState extends State<NewExpense>{
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,34 +34,52 @@ class _NewExpenseState extends State<NewExpense>{
           TextField(
             controller: _titleController,
             maxLength: 50,
-            decoration: InputDecoration(
-              label: Text('Title'),
-            ),
-          ),
-           TextField(
-            controller: _amountController,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              prefixText: '\$',
-              label: Text('Amount'),
-            ),
+            decoration: InputDecoration(label: Text('Title')),
           ),
           Row(
             children: [
-              TextButton(onPressed: (){
-                Navigator.pop(context);
+              Expanded(
+                child: TextField(
+                  controller: _amountController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    prefixText: '\$',
+                    label: Text('Amount'),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                Text('Selected Date'),
+                IconButton(onPressed: (){}, icon: Icon(Icons.calendar_month),),
 
-              }, 
-              child: Text('cancel')),
-              ElevatedButton(onPressed: (){
-                print(_titleController.text);
-                print(_amountController.text);
-              }, child: Text('Save Expense'),),
-             
+                ],
+              )),
+            ],
+          ),
+
+          Row(
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('cancel'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  print(_titleController.text);
+                  print(_amountController.text);
+                },
+                child: Text('Save Expense'),
+              ),
             ],
           ),
         ],
       ),
-      );
+    );
   }
 }
