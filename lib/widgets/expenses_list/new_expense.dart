@@ -34,6 +34,16 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  void _submitExpenseData(){
+    final enteredAmount = double.tryParse(_amountController.text);  //tryParse('Hello') => null, tryParse('3.14') => 3.14
+    final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+
+    if(_titleController.text.trim().isEmpty || amountIsInvalid || _selectedDate == null){
+
+    }
+
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -115,10 +125,7 @@ class _NewExpenseState extends State<NewExpense> {
                 child: Text('cancel'),
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(_titleController.text);
-                  print(_amountController.text);
-                },
+                onPressed: _submitExpenseData,
                 child: Text('Save Expense'),
               ),
             ],
